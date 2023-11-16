@@ -27,7 +27,7 @@ library(BIOS625)
 The usage of BIOS625 revolves around the manualLinearRegression function, which performs linear regression analysis manually.
 
 ## Syntax:
-manualLinearRegression(formula, data)
+BIOS625::manualLinearRegression(formula, data)
 **formula: A symbolic description of the model to be fitted.**
   **data: The data frame containing the variables specified in formula.**
 
@@ -43,7 +43,7 @@ head(dat)
 # 4      4     1.4439 Batch1         A time2       10.08
 # 5      5     0.6372 Batch1         A time1       12.04
 # 6      6     2.1227 Batch1         B time2       13.50
-oneway.model <- manualLinearRegression(expression ~ treatment, data = dat)
+oneway.model <- BIOS625::manualLinearRegression(expression ~ treatment, data = dat)
 oneway.model
 # $coefficients
 # Estimate Std.Error t.value   P.Value
