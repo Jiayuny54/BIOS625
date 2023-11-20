@@ -155,5 +155,5 @@ print(fit_sim)
 Contributing
 + **Your contributions are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests on the GitHub repository.**
 
-  ## License
-  + BIOS625 is open-source software licensed under the MIT license.
+## License
++ BIOS625 is open-source software licensed under the MIT license.
