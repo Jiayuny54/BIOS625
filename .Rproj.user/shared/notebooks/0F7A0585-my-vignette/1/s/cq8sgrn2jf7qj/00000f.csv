@@ -1,0 +1,7 @@
+"0","#Check R-square
+all.equal(round(c(mod1$r.squared, mod1$adj.r.squared),digits = 4), round(c(summary_mod2$r.squared, summary_mod2$adj.r.squared), digits = 4), check.attributes = F)
+"
+"1","[1]"
+"1"," TRUE"
+"1","
+"

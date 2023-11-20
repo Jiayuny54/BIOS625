@@ -1,0 +1,77 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+# load packages
+if (!requireNamespace("devtools", quietly = TRUE))
+    install.packages("devtools")
+# Install BIOS625
+devtools::install_github("Jiayuny54/BIOS625")
+# load BIOS625
+library(BIOS625)
+```
+
+
+## Example 1: MotorTrend Analysis
+```{r}
+# Reading mtcars data set
+data(mtcars)
+head(mtcars)
+
+
+mtcars$am <- as.factor(mtcars$am)
+levels(mtcars$am) <-c("AT", "MT")
+
+# mod1 <- BIOS625::manualLinearRegression(formula = mpg ~ wt + qsec + am, data = mtcars)
+mod1 <- BIOS625::manualLinearRegression(formula = mpg ~ wt + qsec + am, data = mtcars)
+mod1
+
+mod2 <- stats::lm(formula = mpg ~ wt + qsec + am, data = mtcars)
+summary_mod2 <- summary(mod2)
+summary_mod2
+```
+
+
+```{r Demonstrate the correctness}
+#Check coefficients
+all.equal(unname(as.matrix(mod1$coefficients)), unname(as.matrix(summary_mod2$coefficients)), check.attributes = F)
+#Check Residuals
+all.equal(as.vector(mod1$residuals), as.vector(summary_mod2$residuals), check.attributes = F)
+#Check ANOVA (F-statistic)
+all.equal(round(mod1$anova$F.value[1], digits = 2), round(summary_mod2$fstatistic["value"],digits = 2), check.attributes = F)
+#Check R-square
+all.equal(round(c(mod1$r.squared, mod1$adj.r.squared),digits = 4), round(c(summary_mod2$r.squared, summary_mod2$adj.r.squared), digits = 4), check.attributes = F)
+```
+
+
+```{r Demonstrate the efficiency, message=FALSE}
+library(bench)
+bench::mark(
+  unname(as.matrix(manualLinearRegression(formula = mpg ~ wt , data = mtcars)$coefficients)),
+  unname(as.matrix(summary(lm(formula = mpg ~ wt , data = mtcars))$coefficients))
+)
+
+bench::mark(
+  unname(as.matrix(manualLinearRegression(formula = mpg ~ wt + qsec + am, data = mtcars)$coefficients)),
+  unname(as.matrix(summary(lm(formula = mpg ~ wt + qsec + am, data = mtcars))$coefficients))
+)
+```
+
+
+```{r unit testing cases via testthat}
+# Install package from CRAN only if not installed, and load the library
+if (!require(testthat)) install.packages('testthat')
+library(testthat)
+```

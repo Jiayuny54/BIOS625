@@ -1,0 +1,13 @@
+# Install devtools if you haven't already
+if (!requireNamespace("devtools", quietly = TRUE))
+  install.packages("devtools")
+
+# Install BIOS625 from GitHub
+devtools::install_github("Jiayuny54/BIOS625")
+
+# Load ManLinReg
+library(BIOS625)
+
+
+
+
