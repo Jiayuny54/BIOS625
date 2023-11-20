@@ -1,11 +1,11 @@
 {
     "id": "35F335DA",
-    "path": null,
-    "project_path": null,
+    "path": "~/Desktop/BIOS625/coverage_test/Coverage_test.R",
+    "project_path": "coverage_test/Coverage_test.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1700490880903.0,
     "source_on_save": false,
     "relative_order": 4,
@@ -17,11 +17,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 128,
-    "encoding": "",
+    "lastKnownWriteTime": 1700491581,
+    "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1700490939374,
+    "last_content_update": 1700491581840,
     "read_only": false,
     "read_only_alternatives": []
 }
